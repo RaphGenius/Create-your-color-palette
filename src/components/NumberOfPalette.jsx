@@ -9,7 +9,7 @@ const NumberOfPalette = () => {
       <label htmlFor="rangeColor">Nombre de boite : {count} </label>
       <input
         id="rangeColor"
-        min="2"
+        min="1"
         max="8"
         type="range"
         defaultValue={count}

@@ -3,6 +3,7 @@ import Header from "./components/Header";
 import NumberOfPalette from "./components/NumberOfPalette";
 import { useStateContext } from "./contexts/ContextProvider";
 import ShowBigPalette from "./components/ShowBigPalette";
+import ColorChooser from "./components/ColorChooser";
 
 function Box() {
   return (
@@ -13,15 +14,11 @@ function Box() {
 }
 
 function App() {
-  const { count } = useStateContext();
-
   return (
     <div>
       <Header />
       <NumberOfPalette />
-      {Array.from({ length: count }).map((_, index) => (
-        <Box key={index} />
-      ))}
+      <ColorChooser />
       <ShowBigPalette />
     </div>
   );
