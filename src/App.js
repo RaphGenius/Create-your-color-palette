@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Header from "./components/Header";
+import NumberOfPalette from "./components/NumberOfPalette";
+import { useStateContext } from "./contexts/ContextProvider";
+import ShowBigPalette from "./components/ShowBigPalette";
+
+function Box() {
+  return (
+    <div>
+      <p>EXEMPLE BOITE</p>
+    </div>
+  );
+}
 
 function App() {
+  const { count } = useStateContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <NumberOfPalette />
+      {Array.from({ length: count }).map((_, index) => (
+        <Box key={index} />
+      ))}
+      <ShowBigPalette />
     </div>
   );
 }
