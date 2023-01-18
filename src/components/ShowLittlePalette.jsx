@@ -2,15 +2,29 @@ import React from "react";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const ShowLittlePalette = ({ item }) => {
-  const { currentColor, setCurrentColor } = useStateContext();
-  console.log(item.background);
+  const {
+    setCurrentColor,
+    currentColor,
+    allBoxes,
+    setAllBoxes,
+    isFocused,
+    setIsFocused,
+  } = useStateContext();
+
+  const getFocused = () => {
+    setIsFocused(item.index);
+    setCurrentColor(allBoxes[item.index].background);
+  };
+
   return (
     <div
-      style={{ background: item.background }}
-      className="mt-4 border border-sky-500 cursor-pointer"
-      onClick={() => setCurrentColor(item.background)}
+      style={{ background: allBoxes[item.index].background }}
+      className={`mt-4 cursor-pointer h-20 w-full flex justify-center items-cente ${
+        isFocused === item.index ? " borerlx border-x-violet-900 border-4" : ""
+      } `}
+      onClick={() => getFocused()}
     >
-      petite palette
+      <p className="text-center "> {allBoxes[item.index].background}</p>
     </div>
   );
 };
