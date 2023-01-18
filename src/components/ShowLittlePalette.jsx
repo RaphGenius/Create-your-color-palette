@@ -1,30 +1,45 @@
 import React from "react";
+import tinycolor from "tinycolor2";
 import { useStateContext } from "../contexts/ContextProvider";
 
-const ShowLittlePalette = ({ item }) => {
-  const {
-    setCurrentColor,
-    currentColor,
-    allBoxes,
-    setAllBoxes,
-    isFocused,
-    setIsFocused,
-  } = useStateContext();
+const ShowLittlePalette = ({ item, showHex }) => {
+  const { setCurrentColor, allBoxes, isFocused, setIsFocused } =
+    useStateContext();
 
   const getFocused = () => {
-    setIsFocused(item.index);
     setCurrentColor(allBoxes[item.index].background);
+    if (isFocused === item.index) {
+      setIsFocused(undefined);
+      return;
+    }
+    setIsFocused(item.index);
+  };
+
+  const getBrightness = (color) => {
+    const getBrightnessColor = tinycolor(color);
+
+    if (getBrightnessColor.getBrightness() > 125) {
+      return "black";
+    } else {
+      return "white";
+    }
   };
 
   return (
     <div
       style={{ background: allBoxes[item.index].background }}
-      className={`mt-4 cursor-pointer h-20 w-full flex justify-center items-cente ${
-        isFocused === item.index ? " borerlx border-x-violet-900 border-4" : ""
+      className={`mt-4 cursor-pointer h-20 w-full flex justify-center items-center transition-all  ${
+        isFocused === item.index ? "  border-white border-4 scale-110  " : ""
       } `}
       onClick={() => getFocused()}
     >
-      <p className="text-center "> {allBoxes[item.index].background}</p>
+      {showHex && (
+        <div>
+          <p className="text-center "> {allBoxes[item.index].background}</p>
+
+          <p style={{ color: getBrightness(item.background) }}> TEST</p>
+        </div>
+      )}
     </div>
   );
 };

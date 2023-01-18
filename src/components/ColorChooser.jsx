@@ -4,6 +4,7 @@ import { useStateContext } from "../contexts/ContextProvider";
 const ColorChooser = () => {
   const { currentColor, setCurrentColor, changeColorBox, isFocused } =
     useStateContext();
+
   const handleChangeComplete = (color) => {
     setCurrentColor(color.hex);
 
