@@ -19,7 +19,6 @@ const ColorChooser = () => {
         color={currentColor}
         onChange={handleChangeComplete}
       />
-      <p>{currentColor} </p>
     </div>
   );
 };

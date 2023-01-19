@@ -2,9 +2,8 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div>
-      <h1>Color Choice</h1>
-      <h2>Crée ta palette de couleur</h2>
+    <div className="w-full">
+      <h1 className="text-center text-xl">Create your Color Palette</h1>
     </div>
   );
 };

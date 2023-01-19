@@ -7,7 +7,7 @@ const ShowBigPalette = () => {
   const [showHex, setShowHex] = useState(true);
 
   return (
-    <div className=" border border-red-500 p-4">
+    <div className=" border border-red-500 p-4 ">
       <h3 className="text-center">Grosse palette</h3>
       <button onClick={() => setShowHex((prev) => !prev)} className="border-4">
         ENLEVE HEX
