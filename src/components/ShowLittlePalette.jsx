@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import tinycolor from "tinycolor2";
 import { useStateContext } from "../contexts/ContextProvider";
-import { BsFillCheckCircleFill } from "react-icons/bs";
+
+import ChangeBoxName from "./ChangeBoxName";
+import ShowBoxName from "./ShowBoxName";
 
 const ShowLittlePalette = ({ item, showHex }) => {
   const { setCurrentColor, allBoxes, isFocused, setIsFocused, changeNameBox } =
@@ -32,7 +34,7 @@ const ShowLittlePalette = ({ item, showHex }) => {
       style={{ background: allBoxes[item.index].background }}
       className={`mt-4 cursor-pointer h-20 w-full flex justify-center items-center transition-all  ${
         isFocused === item.index
-          ? "  border-white border-4 scale-110 shadow-lg  "
+          ? "  border-white border-4 scale-110 shadow-lg  gap-2 "
           : ""
       } `}
       onClick={() => getFocused()}
@@ -46,30 +48,17 @@ const ShowLittlePalette = ({ item, showHex }) => {
 
           <div>
             {isInputNameOpen ? (
-              <div className="flex justify-center">
-                <input
-                  className="w-3/4 text-center"
-                  style={{
-                    color: getBrightness(item.background),
-                    background: "transparent",
-                    border: "none",
-                    outline: "none",
-                  }}
-                  type="text"
-                  defaultValue={item.name}
-                  onChange={(e) => changeNameBox(e.target.value, item.index)}
-                />
-                <button onClick={() => setIsInputNameOpen(false)}>
-                  <BsFillCheckCircleFill />{" "}
-                </button>
-              </div>
+              <ShowBoxName
+                getBrightness={getBrightness}
+                item={item}
+                setIsInputNameOpen={setIsInputNameOpen}
+              />
             ) : (
-              <p
-                style={{ color: getBrightness(item.background) }}
-                onClick={() => setIsInputNameOpen(true)}
-              >
-                {item.name}{" "}
-              </p>
+              <ChangeBoxName
+                getBrightness={getBrightness}
+                item={item}
+                setIsInputNameOpen={setIsInputNameOpen}
+              />
             )}
           </div>
         </div>
